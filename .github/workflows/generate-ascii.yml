@@ -8,6 +8,18 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+    
+      - name: Install Cowsay Program
+        run: Sudo apt-get install cowsay -y
 
-      - name: Generate ASCII Artwork
+      - name: Execute Cowsay CMD
         run: cowsay -f dragon "Run for cover, I am a DRAGON .... RAAAAR" >> dragon.txt
+
+      - name: Test File Exists
+        run: grep -i "dragon" dragon.txt
+
+      - name: Read File
+        run: cat dragon.txt
+
+      - name: Checkout Repo Files
+        run: ls -ltra
