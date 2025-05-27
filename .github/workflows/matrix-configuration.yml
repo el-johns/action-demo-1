@@ -6,9 +6,17 @@ on:
 jobs:
   matrix-configuration-deploy-on-ubuntu:
     strategy:
+      max-parallel: 2
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, ubuntu-22.04, windows-latest]
         image: [hello-world, alpine]
+        exclude:
+          - os: windows-latest
+            image: alpine
+        include:
+          - os: ubuntu-latest
+            image: nginx:latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Echo Docker Details
